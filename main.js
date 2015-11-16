@@ -71,10 +71,10 @@ function allow(logger, level){
 }
 
 function getConsolePrinter(console){
-    var clog = console && console.log ? console.log.bind(console) : function(){},
-        cdbg = console && console.debug ? console.debug.bind(console): clog,
-        cwrn = console && console.warn ? console.warn.bind(console): clog,
-        cerr = console && console.error ? console.error.bind(console): clog;
+    var clog = console && console.log && console.log.bind ? console.log.bind(console) : function(){},
+        cdbg = console && console.debug && console.debug.bind ? console.debug.bind(console): clog,
+        cwrn = console && console.warn && console.warn.bind ? console.warn.bind(console): clog,
+        cerr = console && console.error && console.error.bind ? console.error.bind(console): clog;
     return function(gCounter, gStart, logger, nLevel, sLevel, msgs, meta){
         var _msgs = [
             "[" + gCounter + " " + (Date.now() - gStart) + "]",
